@@ -9,7 +9,15 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-username/SimpleSonarApp-Java17.git'
+               checkout([
+    $class: 'GitSCM',
+    branches: [[name: '*/main']],
+    userRemoteConfigs: [[
+        url: 'https://github.com/adhya2020/SimpleSonarApp-Java17.git',
+        credentialsId: 'github-token'
+    ]]
+])
+
             }
         }
         stage('Build') {
