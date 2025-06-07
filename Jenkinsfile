@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-username/SimpleSonarApp.git'
+                git 'https://github.com/your-username/SimpleSonarApp-Java17.git'
             }
         }
         stage('Build') {
@@ -20,7 +20,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh "mvn sonar:sonar -Dsonar.projectKey=SimpleSonarApp -Dsonar.login=${SONARQUBE_TOKEN}"
+                    sh "mvn sonar:sonar -Dsonar.projectKey=SimpleSonarApp-Java17 -Dsonar.login=${SONARQUBE_TOKEN}"
                 }
             }
         }
