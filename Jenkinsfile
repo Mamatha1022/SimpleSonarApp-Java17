@@ -17,6 +17,7 @@ pipeline {
                 ])
             }
         }
+    }
 
         stage('Build') {
             steps {
@@ -29,8 +30,6 @@ pipeline {
                 echo "Running SonarQube Analysis with token: ${env.SONARQUBE_TOKEN}"
             }
         }
-    }
-}
 
         stage('Quality Gate') {
             steps {
@@ -40,4 +39,4 @@ pipeline {
             }
         }
     }
-}
+
