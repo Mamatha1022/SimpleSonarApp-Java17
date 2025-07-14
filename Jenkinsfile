@@ -2,21 +2,35 @@ pipeline {
     agent any
 
     environment {
-        SONARQUBE_SERVER = 'SonarQube'
         SONARQUBE_TOKEN = credentials('sonar-token')
     }
 
     stages {
-        stage('Checkout') {
+        stage('Clone') {
             steps {
-               checkout([
-    $class: 'GitSCM',
-    branches: [[name: '*/main']],
-    userRemoteConfigs: [[
-        url: 'https://github.com/Mamatha1022/SimpleSonarApp-Java17.git'
-        credentialsId: 'github-token'
-    ]]
-])
+                checkout([$class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/Mamatha1022/SimpleSonarApp-Java17.git',
+                        credentialsId: 'github-token'
+                    ]]
+                ])
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building project...'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                echo "Running SonarQube Analysis with token: ${env.SONARQUBE_TOKEN}"
+            }
+        }
+    }
+}
 
             }
         }
