@@ -13,7 +13,7 @@ pipeline {
     $class: 'GitSCM',
     branches: [[name: '*/main']],
     userRemoteConfigs: [[
-        url: 'https://github.com/adhya2020/SimpleSonarApp-Java.git',
+        url: 'https:/https://github.com/Mamatha1022/SimpleSonarApp-Java17.git'
         credentialsId: 'github-token'
     ]]
 ])
